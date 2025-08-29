@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from scipy.stats import norm, binom_test
+from scipy.stats import norm, binomtest
 from typing import Tuple
 
 
@@ -52,7 +52,7 @@ def backtest_var(portfolio_returns: pd.Series, var_series: pd.Series) -> dict:
     except Exception:
         expected_alpha = 0.05
 
-    p_val = binom_test(exceptions, n, expected_alpha, alternative='two-sided')
+    p_val = binomtest(exceptions, n, expected_alpha, alternative='two-sided').pvalue
 
     return {
         'exceptions': int(exceptions),
